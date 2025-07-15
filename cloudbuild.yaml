@@ -1,6 +1,6 @@
 steps:
   # Step 1: Run unit tests in a Python environment
-  - name: 'python'
+  - name: 'python:3.10'
     entrypoint: 'bash'
     args:
       - '-c'
