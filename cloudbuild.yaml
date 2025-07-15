@@ -7,7 +7,7 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'us-central1-docker.pkg.dev/exam-registration-app-cicd/exam-app/exam-app']
 
-  # Step 3: Run basic tests (we'll create a test file next)
+  # Step 3: Run unit tests
   - name: 'python'
     entrypoint: 'python3'
     args: ['-m', 'unittest', 'discover', '-s', 'tests']
@@ -26,3 +26,7 @@ steps:
 
 images:
   - 'us-central1-docker.pkg.dev/exam-registration-app-cicd/exam-app/exam-app'
+
+timeout: '1200s'
+options:
+  logging: CLOUD_LOGGING_ONLY
