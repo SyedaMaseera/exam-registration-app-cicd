@@ -8,9 +8,9 @@ steps:
     args: ['push', 'us-central1-docker.pkg.dev/exam-registration-app-cicd/exam-app/exam-app']
 
   # Step 3: Run unit tests
-  - name: 'python'
-    entrypoint: 'python3'
-    args: ['-m', 'unittest', 'discover', '-s', 'tests']
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['run', '--rm', 'us-central1-docker.pkg.dev/exam-registration-app-cicd/exam-app/exam-app', 'python3', '-m', 'unittest', 'discover', '-s', 'tests']
+
 
   # Step 4: Deploy to Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
