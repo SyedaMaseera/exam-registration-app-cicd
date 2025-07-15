@@ -1,0 +1,11 @@
+Flask
+Flask-Login
+Flask-SQLAlchemy
+gunicorn
+Werkzeug
+Jinja2
+itsdangerous
+click
+qrcode
+pillow
+fpdf

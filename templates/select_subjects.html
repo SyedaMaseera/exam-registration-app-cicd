@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Select Subjects | ABC College Hall Ticket Portal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts: Montserrat for headings, Open Sans for body -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            /* Background: real science class with students and lab equipment */
+            background-image: url('https://plus.unsplash.com/premium_photo-1750360905827-af6cb76a55bb?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTU3fHxlbmdpbmVlcmluZyUyMHN1YmplY3RzJTIwYm9va3N8ZW58MHx8MHx8fDA%3D');
+            /* background-image: url('https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=1500&q=80'); */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            font-family: 'Open Sans', Arial, sans-serif;
+        }
+        .subjects-card {
+            background: rgba(255,255,255,0.78);
+            border-radius: 1rem;
+            box-shadow: 0 2px 24px rgba(0,0,0,0.18);
+            backdrop-filter: blur(2px);
+        }
+        .college-title {
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #2d3a4a;
+        }
+        .form-label {
+            font-weight: 600;
+        }
+        .navbar {
+            background: rgba(255,255,255,0.92) !important;
+        }
+        .form-check-input:focus {
+            box-shadow: 0 0 0 0.2rem rgba(59,130,246,.25);
+            border-color: #2563eb;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-light shadow-sm mb-5">
+        <div class="container">
+            <span class="navbar-brand mb-0 h1 college-title">ABC College</span>
+        </div>
+    </nav>
+    <div class="container d-flex align-items-center justify-content-center" style="min-height: 80vh;">
+        <div class="col-md-7 col-lg-5 subjects-card p-5">
+            <h2 class="mb-4 college-title text-center">Select Subjects</h2>
+            <!-- {% with messages = get_flashed_messages() %}
+              {% if messages %}
+                {% for message in messages %}
+                  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+                {% endfor %}
+              {% endif %}
+            {% endwith %} -->
+            <form method="post">
+                <div class="mb-4">
+                    <label class="form-label">Available Subjects</label>
+                    <div class="row">
+                        {% for subject in subjects %}
+                        <div class="col-12 col-md-6 mb-2">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="subjects" id="sub{{ loop.index }}" value="{{ subject.name }}">
+                                <label class="form-check-label" for="sub{{ loop.index }}">{{ subject.name }} <span class="text-muted small">({{ subject.semester }})</span></label>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary btn-lg fw-bold">Next</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- Bootstrap 5 JS (for alert dismissal and interactivity) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

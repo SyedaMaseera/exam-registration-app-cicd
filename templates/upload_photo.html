@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload Photo | ABC College Hall Ticket Portal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('https://images.unsplash.com/photo-1616165914063-fe3bdbab6132?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fG11bHRpcGxlcyUyMHBob3RvcyUyMGJhY2tncm91bmR8ZW58MHx8MHx8fDA%3D');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            font-family: 'Open Sans', Arial, sans-serif;
+        }
+        .upload-card {
+            background: rgba(255,255,255,0.78);
+            border-radius: 1rem;
+            box-shadow: 0 2px 24px rgba(0,0,0,0.18);
+            backdrop-filter: blur(2px);
+        }
+        .college-title {
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #2d3a4a;
+        }
+        .form-label {
+            font-weight: 600;
+        }
+        .navbar {
+            background: rgba(255,255,255,0.92) !important;
+        }
+        .form-control:focus {
+            box-shadow: 0 0 0 0.2rem rgba(59,130,246,.25);
+            border-color: #2563eb;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-light shadow-sm mb-5">
+        <div class="container">
+            <span class="navbar-brand mb-0 h1 college-title">ABC College</span>
+        </div>
+    </nav>
+
+    <div class="container d-flex align-items-center justify-content-center" style="min-height: 80vh;">
+        <div class="col-md-7 col-lg-5 upload-card p-5">
+            <h2 class="mb-4 college-title text-center">Upload Your Photo</h2>
+
+            <form method="post" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="photo" class="form-label">Select a photo (JPEG or PNG)</label>
+                    <input class="form-control" type="file" id="photo" name="photo" accept="image/jpeg, image/png" required>
+                </div>
+                {% if error %}
+                <div class="alert alert-danger">{{ error }}</div>
+                {% endif %}
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary btn-lg fw-bold">Upload & Continue</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

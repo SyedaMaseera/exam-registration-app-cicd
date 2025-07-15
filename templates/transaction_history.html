@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Transaction History | ABC College Hall Ticket Portal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('https://images.unsplash.com/photo-1607237138185-eedd9c632b0b?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+            font-family: 'Open Sans', Arial, sans-serif;
+        }
+        .history-card {
+            background: rgba(255,255,255,0.85);
+            border-radius: 1.2rem;
+            box-shadow: 0 2px 24px rgba(0,0,0,0.15);
+            backdrop-filter: blur(2px);
+        }
+        .college-title {
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-weight: 700;
+            color: #2d3a4a;
+            letter-spacing: 1px;
+        }
+        .table thead th {
+            background: #2563eb;
+            color: #fff;
+            font-size: 1.05rem;
+        }
+        .status-success {
+            color: #22c55e;
+            font-weight: 600;
+        }
+        .navbar {
+            background: rgba(255,255,255,0.92) !important;
+        }
+        .back-link {
+            font-size: 1.05rem;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-light shadow-sm mb-5">
+        <div class="container">
+            <span class="navbar-brand mb-0 h1 college-title">ABC College</span>
+        </div>
+    </nav>
+    <div class="container d-flex align-items-center justify-content-center" style="min-height: 80vh;">
+        <div class="col-md-10 col-lg-8 history-card p-5">
+            <h2 class="mb-4 college-title text-center">Transaction History for {{ username }}</h2>
+            <div class="table-responsive mb-4">
+                <table class="table table-striped table-hover align-middle">
+                    <thead>
+                        <tr>
+                            <th>Transaction ID</th>
+                            <th>Payment Method</th>
+                            <th>Status</th>
+                            <th>Date & Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for ticket in tickets %}
+                        <tr>
+                            <td>TXN{{ ticket.id }}</td>
+                            <td>{{ ticket.payment_method or 'N/A' }}</td>
+                            <td class="status-success">✅ Success</td>
+                            <td>
+                                {% if ticket.date %}
+                                    {{ ticket.date.strftime('%Y-%m-%d %H:%M:%S') }}
+                                {% else %}
+                                    N/A
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% else %}
+                        <tr>
+                            <td colspan="4" class="text-center text-muted">No transactions found.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="text-center">
+                <a href="{{ url_for('profile') }}" class="btn btn-outline-primary back-link">&larr; Back to Profile</a>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

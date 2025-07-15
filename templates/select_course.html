@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Select Course | ABC College Hall Ticket Portal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts: Montserrat for headings, Open Sans for body -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            /* Collage with engineering, science, and technology themes */
+            background-image: url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1500&q=80');
+            /* This Unsplash image shows a modern workspace with engineering, electronics, and computer science vibes.
+               You can swap this for another collage or a custom collage if you want even more visual variety. */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            font-family: 'Open Sans', Arial, sans-serif;
+        }
+        .course-card {
+            background: rgba(255,255,255,0.76);
+            border-radius: 1rem;
+            box-shadow: 0 2px 24px rgba(0,0,0,0.18);
+            backdrop-filter: blur(2px);
+        }
+        .college-title {
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #2d3a4a;
+        }
+        .form-label {
+            font-weight: 600;
+        }
+        .navbar {
+            background: rgba(255,255,255,0.92) !important;
+        }
+        .form-select:focus {
+            box-shadow: 0 0 0 0.2rem rgba(59,130,246,.25);
+            border-color: #2563eb;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-light shadow-sm mb-5">
+        <div class="container">
+            <span class="navbar-brand mb-0 h1 college-title">ABC College</span>
+        </div>
+    </nav>
+    <div class="container d-flex align-items-center justify-content-center" style="min-height: 80vh;">
+        <div class="col-md-6 col-lg-5 course-card p-5">
+            <h2 class="mb-4 college-title text-center">Select Your Course</h2>
+            <form method="post">
+                <div class="mb-4">
+                    <label for="course_id" class="form-label">Available Courses</label>
+                    <select class="form-select form-select-lg" id="course_id" name="course_id" required>
+                        <option value="" disabled selected>Select a course</option>
+                        {% for course in courses %}
+                            <option value="{{ course.id }}">{{ course.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary btn-lg fw-bold">Next</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- Bootstrap 5 JS (for interactivity) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
