@@ -1,16 +1,20 @@
 steps:
-  # Step 1: Build Docker image
+  # Step 1: Run unit tests in a Python environment
+  - name: 'python'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        pip install --no-cache-dir -r requirements.txt
+        python -m unittest discover -s tests
+
+  # Step 2: Build Docker image
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 'us-central1-docker.pkg.dev/exam-registration-app-cicd/exam-app/exam-app', '.']
 
-  # Step 2: Push image to Artifact Registry
+  # Step 3: Push image to Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'us-central1-docker.pkg.dev/exam-registration-app-cicd/exam-app/exam-app']
-
-  # Step 3: Run unit tests
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['run', '--rm', 'us-central1-docker.pkg.dev/exam-registration-app-cicd/exam-app/exam-app', 'python3', '-m', 'unittest', 'discover', '-s', 'tests']
-
 
   # Step 4: Deploy to Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
